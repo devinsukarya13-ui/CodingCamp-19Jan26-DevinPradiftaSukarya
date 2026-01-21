@@ -12,9 +12,9 @@
 
 </head>
 
-<body class="min-h-screen flex items-center justify-center bg-gradient-to-br bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
+<body class="min-h-screen mt-8 bg-gradient-to-br bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700">
 
-    <!-- section -->
+    <!-- section landing page -->
     <section class="text-center text-white px-4">
 
         <!-- heading title -->
@@ -28,8 +28,32 @@
             class="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition">Get
             Started</button>
 
+        <!-- list table -->
+          <div class="w-full max-w-4xl mx-auto">
+            <table class="mt-8 w-full border-collapse bg-slate-800 rounded-lg overflow-hidden">
+                <thead class="bg-slate-700">
+                    <tr>
+                        <th class="text-left px-3 py-3">No</th>
+                        <th class="text-left px-3 py-3">Task</th>
+                        <th class="text-left px-3 py-3">Date</th>
+                        <th class="text-left px-3 py-3">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="border-t border-slate-700">
+                        <td colspan="4" class="text-center px-4 py-6 text-white/60">
+                            No tasks yet
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
+    <section class="hidden">
+
+    </section>
 
     <script src="js/script.js"></script>
 </body>
