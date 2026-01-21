@@ -24,12 +24,10 @@
         <p class="text-lg md:text-xl text-white/80 mb-8">Organize your tasks. Stay productive.</p>
 
         <!-- button -->
-        <button
-            class="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition">Get
-            Started</button>
+        <button id="getStartted_button" class="bg-white text-indigo-600 font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition">Get Started</button>
 
         <!-- list table -->
-          <div class="w-full max-w-4xl mx-auto">
+        <div class="w-full max-w-4xl mx-auto">
             <table class="mt-8 w-full border-collapse bg-slate-800 rounded-lg overflow-hidden">
                 <thead class="bg-slate-700">
                     <tr>
@@ -40,18 +38,55 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="todo_body">
                     <tr class="border-t border-slate-700">
-                        <td colspan="4" class="text-center px-4 py-6 text-white/60">
-                            No tasks yet
-                        </td>
+                        <td colspan="4" class="text-center px-4 py-6 text-white/60"> No tasks yet </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section class="hidden">
+    <!-- hidden form -->
+    <section id="form_section" class="hidden px-4 mt-10">
+        <div class="max-w-xl mx-auto bg-slate-800 rounded-lg p-6 text-white shadow-lg">
+
+            <h2 class="text-2xl font-bold mb-4 text-center">Add new tasks</h2>
+
+            <form id="todo_form" class="space-y-4">
+
+                <!-- tasks -->
+                <div>
+                    <label for="input_task" class="block mb-1 text-sm text-white/80">Task</label>
+                    <input id="input_task" type="text" placeholder="Enter your task" class="w-full px-3 py-2 rounded bg-slate-700 text-white focus:outline-none focus:ring focus:ring-indigo-500" />
+                </div>
+
+                <!-- date -->
+                <div>
+                    <label for="input_date" class="block mb-1 text-sm text-white/80">Date</label>
+                    <input id="input_date" type="date" class="w-full px-3 py-2 rounded bg-slate-700 text-white focus:outline-none focus:ring focus:ring-indigo-500" />
+                </div>
+
+                <!-- status -->
+                <div>
+                    <label for="status_select" class="block mb-1 text-sm text-white/80">Status</label>
+                    <select id="status_select" class="w-full px-3 py-2 rounded bg-slate-700 text-white focus:outline-none focus:ring focus:ring-indigo-500">
+                        <option>Pending</option>
+                        <option>In Progress</option>
+                        <option>Done</option>
+                    </select>
+                </div>
+
+                <!-- button -->
+                <div class="flex justify-end gap-3 pt-4">
+                    <button id="cancel_button" type="button" class="px-4 py-2 rounded bg-slate-600 hover:bg-slate-500 transition">Cancel</button>
+
+                    <button id="submit_button" type="submit" class="px-4 py-2 rounded bg-indigo-600 hover:bg-indigo-500 transition font-semibold">Add Task</button>
+                </div>
+            </form>
+
+        </div>
+
 
     </section>
 
