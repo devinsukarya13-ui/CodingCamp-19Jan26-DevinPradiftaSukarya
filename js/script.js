@@ -1,7 +1,8 @@
+// array untuk table
+const todos = [];
 // button
 const getStartedButton = document.getElementById("getStarted_button");
 const cancelButton = document.getElementById("cancel_button");
-const submitButton = document.getElementById("submit_button")
 // section
 const formSection = document.getElementById("form_section");
 // form & inputs
@@ -17,10 +18,10 @@ const todoBody = document.getElementById("todo_body");
 // form hidden
 getStartedButton.addEventListener("click", () => {
     formSection.classList.remove("hidden");
-} )
+});
 cancelButton.addEventListener("click", () => {
     formSection.classList.add("hidden");
-})
+});
 
 // form submit
 todoForm.addEventListener("submit", function(event){
@@ -30,5 +31,26 @@ todoForm.addEventListener("submit", function(event){
     const date = dateInput.value;
     const status = statusSelect.value;
 
-    console.log(task, date, status);
-})
+    todos.push({
+        task,
+        date,
+        status
+    });
+
+    todoBody.innerHTML = "";
+
+    todos.forEach(function(item, index) {
+        const row = document.createElement("tr");
+        row.classList.add("border-t", "border-slate-700");
+
+        row.innerHTML = `
+            <td class="text-left px-3 py-2">${index + 1}</td>
+            <td class="text-left px-3 py-2">${item.task}</td>
+            <td class="text-left px-3 py-2">${item.date}</td>
+            <td class="text-left px-3 py-2">${item.status}</td>
+        `;
+
+        todoBody.appendChild(row);
+});
+
+});
