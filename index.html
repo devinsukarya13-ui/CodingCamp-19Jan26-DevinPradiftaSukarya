@@ -28,13 +28,35 @@
 
         <!-- list table -->
         <div class="w-full max-w-4xl mx-auto">
-            <table class="mt-8 w-full border-collapse bg-slate-800 rounded-lg overflow-hidden">
+            <table class="mt-8 w-full border-collapse bg-slate-800 rounded-lg">
                 <thead class="bg-slate-700">
                     <tr>
                         <th class="text-left px-3 py-3">No</th>
                         <th class="text-left px-3 py-3">Task</th>
                         <th class="text-left px-3 py-3">Date</th>
-                        <th class="text-left px-3 py-3">Status</th>
+                        <th class="text-left px-3 py-3 relative">
+                            <div class="flex items-center gap-2">Status
+                                <button id="filter_toggle" class="text-slate-400 hover:text-white">
+                                    ⏷
+                                </button>
+                            </div>
+
+                            <div id="filter_menu" class="hidden absolute mt-2 bg-slate-800 border border-slate-600 rounded shadow-lg z-50">
+                                <button data-status="all" class="block px-4 py-2 hover:bg-slate-700 w-full text-left">
+                                    All
+                                </button>
+                                <button data-status="Pending" class="block px-4 py-2 hover:bg-slate-700 w-full text-left">
+                                    Pending
+                                </button>
+                                <button data-status="In Progress" class="block px-4 py-2 hover:bg-slate-700 w-full text-left">
+                                    In Progress
+                                </button>
+                                <button data-status="Done" class="block px-4 py-2 hover:bg-slate-700 w-full text-left">
+                                    Done
+                                </button>
+                            </div>
+                        </th>
+                        <th id="action_header" class="text-left px-3 py-3 hidden">Action</th>
                     </tr>
                 </thead>
 
@@ -79,7 +101,7 @@
 
                 <!-- button -->
                 <div class="flex justify-end gap-3 pt-4">
-                    <button id="cancel_button" type="button" class="px-4 py-2 rounded bg-slate-600 hover:bg-slate-500 transition">Cancel</button>
+                    <button id="cancel_button" type="button" class="px-4 py-2 rounded bg-slate-600 hover:bg-slate-500 transition">Close</button>
 
                     <button id="submit_button" type="submit" class="px-4 py-2 rounded bg-indigo-600 hover:bg-indigo-500 transition font-semibold">Add Task</button>
                 </div>

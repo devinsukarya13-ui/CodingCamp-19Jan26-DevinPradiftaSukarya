@@ -1,5 +1,7 @@
 // array untuk table
 const todos = [];
+// variable filter
+let currentFilter = "all";
 // button
 const getStartedButton = document.getElementById("getStarted_button");
 const cancelButton = document.getElementById("cancel_button");
@@ -10,8 +12,12 @@ const todoForm = document.getElementById("todo_form");
 const taskInput = document.getElementById("input_task");
 const dateInput = document.getElementById("input_date");
 const statusSelect = document.getElementById("status_select");
+const actionHeader = document.getElementById("action_header");
 // table body
 const todoBody = document.getElementById("todo_body");
+// filter
+const filterToggle = document.getElementById("filter_toggle");
+const filterMenu = document.getElementById("filter_menu");
 
 
 
@@ -21,6 +27,22 @@ getStartedButton.addEventListener("click", () => {
 });
 cancelButton.addEventListener("click", () => {
     formSection.classList.add("hidden");
+});
+
+// filter
+filterToggle.addEventListener("click", function (event){
+    event.stopPropagation();
+    filterMenu.classList.toggle("hidden");
+});
+document.addEventListener("click", function (event){
+    filterMenu.classList.add("hidden");
+});
+filterMenu.addEventListener("click", function (event){
+    const status = event.target.dataset.status;
+    if (!status) return;
+    currentFilter = status;
+    renderTodos();
+    filterMenu.classList.add("hidden");
 });
 
 // form submit
@@ -34,7 +56,7 @@ todoForm.addEventListener("submit", function (event) {
     if (task === "" || date === "") {
         alert("TO DO LIST AND DATE CANT BE EMPTY")
         return;
-    }
+    };
 
     todos.push({
         id: Date.now(),
@@ -48,7 +70,20 @@ todoForm.addEventListener("submit", function (event) {
 function renderTodos() {
     todoBody.innerHTML = "";
 
-    todos.forEach(function (item, index) {
+    let filteredTodos = todos;
+    if (currentFilter !== "all"){
+        filteredTodos = todos.filter(function (item){
+            return item.status === currentFilter;
+        });
+    };
+
+    if (todos.length > 0 ) {
+        actionHeader.classList.remove("hidden");
+    } else {
+        actionHeader.classList.add("hidden");
+    };
+
+    filteredTodos.forEach(function (item, index){
         const row = document.createElement("tr");
         row.classList.add("border-t", "border-slate-700");
 
@@ -75,8 +110,10 @@ function renderTodos() {
             if (index !== -1) {
                 todos.splice(index, 1);
                 renderTodos();
-            }
+            };
         });
     });
-}
+};
+
+
 
