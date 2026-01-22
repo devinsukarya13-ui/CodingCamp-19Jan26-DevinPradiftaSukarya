@@ -67,6 +67,25 @@ todoForm.addEventListener("submit", function (event) {
     renderTodos();
 });
 
+// coloring status
+function getStatusClass(status) {
+    if (status === "Pending") {
+        return "text-yellow-400";
+    }
+
+    if (status === "In Progress") {
+        return "text-blue-400";
+    }
+
+    if (status === "Done") {
+        return "text-green-400";
+    }
+
+    return "text-slate-300";
+};
+
+
+// array table body
 function renderTodos() {
     todoBody.innerHTML = "";
 
@@ -91,7 +110,9 @@ function renderTodos() {
             <td class="text-left px-3 py-2">${index + 1}</td>
             <td class="text-left px-3 py-2">${item.task}</td>
             <td class="text-left px-3 py-2">${item.date}</td>
-            <td class="text-left px-3 py-2">${item.status}</td>
+            <td class="text-left px-3 py-2">
+                <span class="${getStatusClass(item.status)} font-semibold">${item.status}</span>
+            </td>
             <td class="text-left px-3 py-2">
                 <button class="delete-btn text-red-500 hover:underline">
                     Delete
@@ -114,6 +135,8 @@ function renderTodos() {
         });
     });
 };
+
+
 
 
 
