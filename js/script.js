@@ -24,22 +24,31 @@ cancelButton.addEventListener("click", () => {
 });
 
 // form submit
-todoForm.addEventListener("submit", function(event){
+todoForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const task = taskInput.value;
     const date = dateInput.value;
     const status = statusSelect.value;
 
+    if (task === "" || date === "") {
+        alert("TO DO LIST AND DATE CANT BE EMPTY")
+        return;
+    }
+
     todos.push({
+        id: Date.now(),
         task,
         date,
         status
     });
+    renderTodos();
+});
 
+function renderTodos() {
     todoBody.innerHTML = "";
 
-    todos.forEach(function(item, index) {
+    todos.forEach(function (item, index) {
         const row = document.createElement("tr");
         row.classList.add("border-t", "border-slate-700");
 
@@ -48,9 +57,26 @@ todoForm.addEventListener("submit", function(event){
             <td class="text-left px-3 py-2">${item.task}</td>
             <td class="text-left px-3 py-2">${item.date}</td>
             <td class="text-left px-3 py-2">${item.status}</td>
+            <td class="text-left px-3 py-2">
+                <button class="delete-btn text-red-500 hover:underline">
+                    Delete
+                </button>
+            </td>
         `;
 
         todoBody.appendChild(row);
-});
 
-});
+        const deleteButton = row.querySelector(".delete-btn");
+        deleteButton.addEventListener("click", function () {
+            const index = todos.findIndex(function (todo) {
+                return todo.id === item.id;
+            });
+
+            if (index !== -1) {
+                todos.splice(index, 1);
+                renderTodos();
+            }
+        });
+    });
+}
+
